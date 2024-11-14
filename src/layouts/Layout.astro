@@ -1,0 +1,62 @@
+---
+import {
+    WEB_SITE_NAME,
+    ICP_NUM,
+    ALBUM_NAME_ENCHANTED_FOREST,
+    ALBUM_NAME_ANIMAL_WORLD,
+} from "../const";
+---
+
+<html lang="zh-cn" data-theme="cupcake">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{WEB_SITE_NAME}</title>
+    </head>
+    <body>
+        <header>
+            <div class="navbar bg-neutral text-neutral-content">
+                <div class="flex-1">
+                    <a class="btn btn-ghost text-xl font-semibold" href="/"
+                        >{WEB_SITE_NAME}</a
+                    >
+                </div>
+                <div class="flex-none">
+                    <ul class="menu menu-horizontal px-1">
+                        <li><a href="/about" class="font-medium">关于我</a></li>
+                        <li>
+                            <details class="">
+                                <summary class="font-medium">精美画册</summary>
+                                <ul class="bg-neutral text-neutral-content">
+                                    <li>
+                                        <a href={'/album/' + ALBUM_NAME_ENCHANTED_FOREST}
+                                            >魔法森林</a>
+                                    </li>
+                                    <li>
+                                        <a href={'/album/' + ALBUM_NAME_ANIMAL_WORLD}
+                                            >动物世界</a>
+                                    </li>
+                                </ul>
+                            </details>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <main class="">
+            <slot />
+        </main>
+        <footer
+            class="footer footer-center bg-base-300 text-base-content mt-12 p-8"
+        >
+            <aside>
+                <p>
+                    Copyright © {new Date().getFullYear()} - All right reserved
+                    by {WEB_SITE_NAME} | {ICP_NUM}
+                </p>
+            </aside>
+        </footer>
+    </body>
+</html>

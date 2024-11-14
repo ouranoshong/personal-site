@@ -1,0 +1,50 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "../../layouts/Layout.astro";
+import {
+    ALBUM_NAME_ANIMAL_WORLD,
+    ALBUM_NAME_ENCHANTED_FOREST,
+    ALBUMS,
+} from "../../const";
+
+export const getStaticPaths = () => {
+    return [
+        {
+            params: {
+                id: ALBUM_NAME_ANIMAL_WORLD,
+            },
+        },
+        {
+            params: {
+                id: ALBUM_NAME_ENCHANTED_FOREST,
+            },
+        },
+    ];
+};
+
+const { id } = Astro.params;
+let album = {
+    title: "",
+    description: "",
+    images: [{}],
+};
+
+if (id == ALBUM_NAME_ANIMAL_WORLD) {
+    album = ALBUMS[id];
+}
+
+if (id == ALBUM_NAME_ENCHANTED_FOREST) {
+    album = ALBUMS[id];
+}
+---
+
+<Layout>
+    <article class="m-auto mt-12 prose">
+        <h1>{album.title}</h1>
+        <p>{album.description}</p>
+    </article>
+
+    <section class="m-auto grid-cols-1 md:grid-cols-4">
+
+    </section>
+</Layout>

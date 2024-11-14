@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { TOURS } from "../const";
+---
+
+<Layout>
+	<section
+		class="hero min-h-screen"
+		style="background-image: url(https://images.unsplash.com/photo-1425342605259-25d80e320565?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=amanda-sandlin-jIdKrtJF8Uk-unsplash.jpg&w=1920);"
+	>
+		<div class="hero-overlay bg-opacity-10"></div>
+		<div class="hero-content text-secondary-content text-center">
+			<div class="max-w-md">
+				<h1 class="mb-5 text-5xl font-bold">世界，你好</h1>
+				<p class="mb-5">追随世界的光影，书写旅行的诗篇。</p>
+				<a class="btn btn-primary" href="#tours">马上出发</a>
+			</div>
+		</div>
+	</section>
+	<section class="max-w-5xl 2xl:max-w-7xl m-auto pt-10">
+		<div class="tours" id="tours">
+			<h1 class="text-3xl font-bold">人生之旅</h1>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+				{
+					TOURS.map((tour) => (
+						<div class="card border rounded-xl shadow-xl md:mt-8">
+							<figure>
+								<img
+									class="object-cover md:h-72 2xl:h-108"
+									src={tour.face}
+									alt={tour.title}
+								/>
+							</figure>
+							<div class="card-body">
+								<div class="card-title">{tour.title}</div>
+								<time datetime={tour.year}>{tour.year}</time>
+								<p>{tour.description}</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Layout>
