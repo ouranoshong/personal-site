@@ -26,7 +26,12 @@ const { id } = Astro.params;
 let album = {
     title: "",
     description: "",
-    images: [{}],
+    images: [
+        {
+            url: "",
+            desc: "",
+        },
+    ],
 };
 
 if (id == ALBUM_NAME_ANIMAL_WORLD) {
@@ -39,12 +44,68 @@ if (id == ALBUM_NAME_ENCHANTED_FOREST) {
 ---
 
 <Layout>
-    <article class="m-auto mt-12 prose">
-        <h1>{album.title}</h1>
-        <p>{album.description}</p>
-    </article>
-
-    <section class="m-auto grid-cols-1 md:grid-cols-4">
-
-    </section>
+    <div class="grid grid-cols-1">
+        <div class="flex flex-col justify-center items-center">
+            <article class="mt-12 mx-2 prose-sm md:prose">
+                <h1>{album.title}</h1>
+                <p>{album.description}</p>
+            </article>
+            <section class="mt-12 max-w-6xl">
+                <!-- {
+                    album.images.map((item) => (
+                        <div class="card">
+                            <figure>
+                                <img
+                                    class="object-cover h-64"
+                                    src={item.url}
+                                    alt={item.desc}
+                                />
+                            </figure>
+                            <div class="card-body text-center">
+                                <h2 class="card-title" />
+                                <p>{item.desc}</p>
+                            </div>
+                        </div>
+                    ))
+                } -->
+    
+                <div class="carousel w-full md:rounded-2xl">
+                    {
+                        album.images.map((item, i, items) => (
+                            <div
+                                id={"side-" + i}
+                                class="carousel-item relative w-full"
+                            >
+                                <img
+                                    src={item.url}
+                                    class="w-full"
+                                    alt={item.desc}
+                                />
+                                <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                                    <a
+                                        href={
+                                            "#side-" +
+                                            (i == 0 ? items.length - 1 : i - 1)
+                                        }
+                                        class="btn btn-circle btn-sm md:btn-md"
+                                    >
+                                        ❮
+                                    </a>
+                                    <a
+                                        href={
+                                            "#side-" +
+                                            (i == items.length - 1 ? 0 : i + 1)
+                                        }
+                                        class="btn btn-circle btn-sm md:btn-md"
+                                    >
+                                        ❯
+                                    </a>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </section>
+        </div>
+    </div>
 </Layout>
